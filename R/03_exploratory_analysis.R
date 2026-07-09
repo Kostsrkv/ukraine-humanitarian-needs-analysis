@@ -7,6 +7,7 @@ library(scales)
 processed_dir <- "data/processed"
 tables_dir <- "outputs/tables"
 dir.create(tables_dir, recursive = TRUE, showWarnings = FALSE)
+
 humanitarian_needs <- read_csv(
   file.path(processed_dir, "humanitarian_needs_clean.csv"),
   show_col_types = FALSE
