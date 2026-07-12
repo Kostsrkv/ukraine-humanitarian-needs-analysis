@@ -1,71 +1,221 @@
-# Humanitarian Needs & Response Dashboard for Ukraine
+# Humanitarian Needs Analysis in Ukraine (HNRP 2026)
 
-This is a policy-oriented data analytics portfolio project focused on humanitarian needs, displacement pressure, conflict exposure, and response coverage across Ukrainian regions.
+A reproducible R-based analytical project exploring humanitarian needs, planned response coverage, and severity across Ukrainian oblasts using the 2026 Humanitarian Needs and Response Plan (HNRP) dataset.
 
-The project demonstrates an end-to-end analytical workflow: defining a policy-relevant research question, collecting open humanitarian and conflict-related data, cleaning and structuring regional indicators, conducting exploratory data analysis in R, preparing visualisations, and translating findings into a short analytical brief.
+The project demonstrates a complete analytical workflow, from importing raw humanitarian data to cleaning, aggregation, exploratory analysis, visualisation, and interpretation. The primary objective is to identify regional patterns in estimated humanitarian needs and examine how planned humanitarian response aligns with those needs.
 
-## Research question
+---
 
-Which Ukrainian regions show the strongest overlap of humanitarian need, displacement pressure, and security risk?
+## Project Overview
 
-## Why this project matters
+Humanitarian organisations rely on data to prioritise assistance where needs are greatest. This project analyses publicly available HNRP 2026 planning data to explore the geographical distribution of humanitarian needs across Ukraine.
 
-Humanitarian and public-sector decisions often depend on fragmented, incomplete, and fast-changing data. This project explores how open data can be cleaned, structured, and visualised to support a clearer understanding of regional humanitarian pressure in Ukraine.
+Using R, the project builds a fully reproducible workflow that:
 
-The goal is not to replace official humanitarian prioritisation frameworks, but to show how a transparent analytical workflow can help identify patterns, gaps, and regions that may require closer policy or operational attention.
+- imports raw humanitarian datasets;
+- cleans and validates data;
+- aggregates indicators at oblast (ADM1) level;
+- analyses estimated humanitarian needs and planned response coverage;
+- produces publication-ready visualisations;
+- summarises findings in a short analytical policy brief.
 
-## Analytical questions
+The project is intended as a portfolio case demonstrating practical skills in humanitarian data analysis, monitoring, reporting, and reproducible research.
 
-1. Which Ukrainian oblasts show the highest reported humanitarian needs?
-2. How does displacement pressure vary across regions?
-3. Which regions combine high humanitarian needs with high conflict exposure?
-4. Are there visible gaps between estimated needs and response coverage?
-5. How can selected indicators be combined into a simple exploratory humanitarian pressure score?
+---
 
-## Data sources
+# Research Question
 
-The project uses open-source humanitarian and conflict-related datasets, including:
+**Which Ukrainian oblasts have the highest estimated humanitarian needs, and how does planned humanitarian response coverage vary across regions and severity levels?**
 
-* OCHA / Humanitarian Needs and Response Plan data for Ukraine
-* HDX JIAF Humanitarian Needs and Response Plan dataset
-* IOM Displacement Tracking Matrix data for Ukraine
-* ACLED Ukraine Conflict Monitor data
+---
 
-## Tools
+# Dataset
 
-* R for data cleaning, exploratory analysis, descriptive statistics, visualisation, and simple indicator construction
-* SQL / BigQuery for structured aggregation examples
-* Python for API access or small automation tasks
-* Power BI for dashboard prototyping
-* GitHub for documentation and reproducibility
+Source:
 
-## Planned workflow
+- Ukraine Humanitarian Needs and Response Plan (HNRP) 2026
+- Joint Intersectoral Analysis Framework (JIAF)
+- Humanitarian Data Exchange (HDX)
 
-1. Define the policy question and analytical indicators
-2. Collect open humanitarian and conflict-related data
-3. Clean and standardise regional names and variables
-4. Build a region-level analytical dataset
-5. Explore the data in R
-6. Create summary indicators and a prototype humanitarian pressure score
-7. Produce charts and tables
-8. Prepare a short policy-oriented analytical brief
-9. Develop a dashboard concept or prototype
+The analysis focuses on oblast-level (ADM1) indicators extracted from:
 
-## Expected outputs
+- Overall Humanitarian Needs
+- Internally Displaced Persons (IDPs)
+- War-Affected Non-Displaced Population
 
-* Cleaned region-level dataset
-* R scripts for data import, cleaning, analysis, and visualisation
-* SQL query examples
-* Python API or automation example
-* Summary charts and tables
-* Exploratory Humanitarian Pressure Index
-* Short policy brief with findings and limitations
-* Power BI dashboard concept or screenshots
+---
 
-## Methodological note
+# Tools
 
-The Humanitarian Pressure Index is exploratory. It is designed for portfolio and learning purposes and does not represent an official humanitarian prioritisation model. Findings should be interpreted cautiously due to differences in data sources, reporting periods, methodologies, and geographic coverage.
+- **R**
+- tidyverse
+- ggplot2
+- readxl
+- readr
+- dplyr
+- tidyr
+- forcats
+- ggrepel
+- scales
 
-## Project status
+---
 
-In progress.
+# Analytical Workflow
+
+```
+Raw Excel workbook
+        │
+        ▼
+Import selected worksheets
+        │
+        ▼
+Data cleaning & validation
+        │
+        ▼
+Variable standardisation
+        │
+        ▼
+Oblast-level aggregation
+        │
+        ▼
+Exploratory analysis
+        │
+        ▼
+Data visualisation
+        │
+        ▼
+Policy brief
+```
+
+---
+
+# Repository Structure
+
+```
+.
+├── R/                 # Analysis scripts
+├── data/
+│   ├── raw/           # Original HNRP workbook
+│   └── processed/     # Clean datasets
+├── outputs/
+│   ├── charts/        # Visualisations
+│   └── tables/        # Summary tables
+├── report/            # Policy brief
+├── dashboard/         # Reserved for future dashboard development
+├── python/            # Reserved for future Python workflows
+└── sql/               # Reserved for future SQL queries
+```
+
+---
+
+# Project Outputs
+
+The project produces:
+
+- Cleaned humanitarian datasets
+- Oblast-level summary tables
+- Humanitarian indicators
+- Exploratory visualisations
+- Analytical policy brief
+
+Outputs are automatically generated by the analysis scripts.
+
+---
+
+# Key Findings
+
+The exploratory analysis identifies several important patterns.
+
+- Humanitarian needs are highly concentrated in eastern, southern, and frontline oblasts.
+- Kharkivska oblast records the highest estimated humanitarian need in the dataset.
+- Planned response coverage generally increases in oblasts with the highest humanitarian severity.
+- Response coverage varies considerably across regions and should be interpreted as planning targets rather than actual assistance delivered.
+- Severity and estimated humanitarian need describe different dimensions of the humanitarian situation and should be interpreted together.
+
+---
+
+# Visualisations
+
+## Estimated People in Need
+
+![](outputs/charts/top_people_in_need.png)
+
+---
+
+## Planned Reach vs Estimated Need
+
+![](outputs/charts/people_in_need_vs_planned_reach.png)
+
+---
+
+## Planned Response Coverage
+
+![](outputs/charts/response_coverage_by_oblast.png)
+
+---
+
+## Humanitarian Needs vs Response Coverage
+
+![](outputs/charts/needs_vs_response_coverage.png)
+
+---
+
+# Policy Brief
+
+A short analytical report summarising the methodology, findings, monitoring implications, and limitations is available here:
+
+**report/short_policy_brief.md**
+
+---
+
+# Reproducing the Analysis
+
+Run the scripts in the following order:
+
+```r
+source("R/01_data_import.R")
+
+source("R/02_data_cleaning.R")
+
+source("R/03_exploratory_analysis.R")
+
+source("R/04_visualisation.R")
+```
+
+Each script builds on the outputs generated by the previous step.
+
+---
+
+# Limitations
+
+This project represents an exploratory analysis of HNRP planning data.
+
+Important methodological considerations include:
+
+- Planned reach represents planning targets rather than actual assistance delivered.
+- Aggregated indicators may include overlap across strategic-priority groups.
+- Severity reflects the highest recorded severity within an oblast rather than its full internal distribution.
+- Oblast-level aggregation simplifies local-level humanitarian variation.
+
+These limitations are documented in the accompanying policy brief.
+
+---
+
+# Future Development
+
+Future versions of the project may include:
+
+- integration of ACLED conflict-event data;
+- IOM Displacement Tracking Matrix (DTM);
+- humanitarian access indicators;
+- interactive dashboard development;
+- SQL-based data pipelines;
+- Power BI reporting;
+- Python-based automation;
+- comparison between planned and actual humanitarian response data.
+
+---
+
+# Author
+
+**Kostiantyn Serikov**
